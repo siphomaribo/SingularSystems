@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.ExternalSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.Tests", "SingluarSystems.Tests\SingluarSystems.Tests.csproj", "{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.ExternalServices.Interfaces", "SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj", "{25BAE426-4228-442E-82DA-BB5B6713F4F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj" />
+    <ProjectReference Include="..\SingluarSystems.Models\SingluarSystems.Models.csproj" />
   </ItemGroup>
 
 </Project>
