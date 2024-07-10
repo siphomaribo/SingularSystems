@@ -17,7 +17,17 @@ namespace SingluarSystems.ExternalServices.HttpProductAPI
         }
         public async Task<IEnumerable<ProductSaleModel>> GetProductSalesSummaryAsync(int productId)
         {
-            var url = $"product-sales?Id={productId}";
+            if (string.IsNullOrWhiteSpace(_apiSettings.Value.ProductApiBaseUrl))
+            {
+                throw new InvalidOperationException("Product API base URL is not configured.");
+            }
+
+            if (productId <= 0)
+            {
+                throw new ArgumentException("Product ID must be a positive integer.", nameof(productId));
+            }
+
+            var url = $"{_apiSettings.Value.ProductApiBaseUrl}/product-sales?Id={productId}";
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
@@ -27,6 +37,11 @@ namespace SingluarSystems.ExternalServices.HttpProductAPI
 
         public async Task<IEnumerable<ProductModel>> GetProductsAsync()
         {
+            if (string.IsNullOrWhiteSpace(_apiSettings.Value.ProductApiBaseUrl))
+            {
+                throw new InvalidOperationException("Product API base URL is not configured.");
+            }
+
             var response = await _httpClient.GetAsync($"{_apiSettings.Value.ProductApiBaseUrl}/products");
             response.EnsureSuccessStatusCode();
 
