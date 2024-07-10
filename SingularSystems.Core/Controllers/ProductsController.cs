@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SingluarSystems.Abstraction.Interface;
 using SingluarSystems.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SingularSystems.Core.Controllers
 {
@@ -10,9 +14,12 @@ namespace SingularSystems.Core.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly ILogger<ProductsController> _logger;
+
+        public ProductsController(IProductService productService, ILogger<ProductsController> logger)
         {
-            _productService = productService;
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
@@ -26,8 +33,8 @@ namespace SingularSystems.Core.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception and return appropriate error response
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                _logger.LogError(ex, "An error occurred while fetching products.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -45,18 +52,19 @@ namespace SingularSystems.Core.Controllers
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, "Invalid argument exception in GetProductSalesSummaryAsync.");
                 return BadRequest(ex.Message);
             }
             catch (InvalidOperationException ex)
             {
+                _logger.LogError(ex, "Invalid operation exception in GetProductSalesSummaryAsync.");
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
-                // Log exception and return appropriate error response
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                _logger.LogError(ex, "Unexpected error in GetProductSalesSummaryAsync.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
-
     }
 }

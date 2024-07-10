@@ -23,9 +23,21 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// Add logging configuration
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders(); 
+    logging.AddConsole();
+    logging.AddDebug(); 
+                        // Add other logging configurations as needed (e.g., file logging, Azure Application Insights)
+});
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
