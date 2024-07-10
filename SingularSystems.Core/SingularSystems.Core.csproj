@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SingluarSystems.ExternalServices.HttpProductAPI\SingluarSystems.ExternalServices.HttpProductAPI.csproj" />
     <ProjectReference Include="..\SingluarSystems.Models\SingluarSystems.Models.csproj" />
+    <ProjectReference Include="..\SingluarSystems.Services\SingluarSystems.Services.csproj" />
   </ItemGroup>
 
 </Project>

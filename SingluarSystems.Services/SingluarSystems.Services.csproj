@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SingluarSystems.Abstraction.Interface\SingluarSystems.Abstraction.Interface.csproj" />
+    <ProjectReference Include="..\SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

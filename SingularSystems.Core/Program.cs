@@ -1,7 +1,9 @@
 using Microsoft.Extensions.Options;
+using SingluarSystems.Abstraction.Interface;
 using SingluarSystems.ExternalServices.HttpProductAPI;
 using SingluarSystems.ExternalServices.Interfaces;
 using SingluarSystems.Models;
+using SingluarSystems.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddHttpClient<IProductRepository, SalesAPIService>((serviceProv
     var apiSettings = serviceProvider.GetRequiredService<IOptions<SalesAPISettingsModel>>().Value;
     client.BaseAddress = new Uri(apiSettings.ProductApiBaseUrl);
 });
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 
 builder.Services.AddControllers();

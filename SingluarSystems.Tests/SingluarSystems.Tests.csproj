@@ -12,9 +12,17 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SingluarSystems.Abstraction.Interface\SingluarSystems.Abstraction.Interface.csproj" />
+    <ProjectReference Include="..\SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj" />
+    <ProjectReference Include="..\SingluarSystems.Models\SingluarSystems.Models.csproj" />
+    <ProjectReference Include="..\SingluarSystems.Services\SingluarSystems.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

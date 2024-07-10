@@ -1,6 +1,6 @@
 @SingularSystems.Core_HostAddress = http://localhost:5056
 
-GET {{SingularSystems.Core_HostAddress}}/weatherforecast/
+GET {{SingularSystems.Core_HostAddress}}/products/
 Accept: application/json
 
 ###

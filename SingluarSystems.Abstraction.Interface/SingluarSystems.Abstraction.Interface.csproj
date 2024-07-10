@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SingluarSystems.Models\SingluarSystems.Models.csproj" />
+  </ItemGroup>
+
 </Project>
