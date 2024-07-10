@@ -72,13 +72,13 @@ namespace SingluarSystems.Tests.Services
             // Arrange
             var salesSummary = new List<ProductSaleModel>
             {
-                new ProductSaleModel { SaleId = 1, ProductId = 1, SalePrice = 15.33, SaleQty = 10, SaleDate = DateTime.Parse("2023-01-01") }
+                new ProductSaleModel { SaleId = 1, ProductId = 1, SalePrice = 15.33m, SaleQty = 10, SaleDate = DateTime.Parse("2023-01-01") }
             };
 
             _productRepositoryMock.Setup(repo => repo.GetProductSalesSummaryAsync(1)).ReturnsAsync(salesSummary);
 
             // Act
-            var result = await _productService.GetProductSalesSummaryAsync(1);
+            var result = await _productService.GetProductSalesAsync(1);
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -90,7 +90,7 @@ namespace SingluarSystems.Tests.Services
         public void GetProductSalesSummaryAsync_InvalidProductId_ThrowsArgumentException()
         {
             // Act & Assert
-            var ex = Assert.ThrowsAsync<ArgumentException>(async () => await _productService.GetProductSalesSummaryAsync(0));
+            var ex = Assert.ThrowsAsync<ArgumentException>(async () => await _productService.GetProductSalesAsync(0));
             Assert.That(ex.Message, Is.EqualTo("Product ID must be a positive integer. (Parameter 'productId')"));
         }
 
@@ -101,7 +101,7 @@ namespace SingluarSystems.Tests.Services
             _productRepositoryMock.Setup(repo => repo.GetProductSalesSummaryAsync(1)).ThrowsAsync(new Exception("Repository error"));
 
             // Act & Assert
-            var ex = Assert.ThrowsAsync<Exception>(async () => await _productService.GetProductSalesSummaryAsync(1));
+            var ex = Assert.ThrowsAsync<Exception>(async () => await _productService.GetProductSalesAsync(1));
             Assert.That(ex.Message, Is.EqualTo("Repository error"));
         }
 
@@ -112,8 +112,39 @@ namespace SingluarSystems.Tests.Services
             _productRepositoryMock.Setup(repo => repo.GetProductSalesSummaryAsync(1)).ReturnsAsync((IEnumerable<ProductSaleModel>)null);
 
             // Act & Assert
-            var ex = Assert.ThrowsAsync<InvalidOperationException>(async () => await _productService.GetProductSalesSummaryAsync(1));
+            var ex = Assert.ThrowsAsync<InvalidOperationException>(async () => await _productService.GetProductSalesAsync(1));
             Assert.That(ex.Message, Is.EqualTo("Failed to retrieve product sales summary."));
+        }
+
+        [Test]
+        public void CalculateSalesSummary_ValidInput_ReturnsCorrectSummary()
+        {
+            // Arrange
+            var productSales = new List<ProductSaleModel>
+            {
+                new ProductSaleModel { SalePrice = 10.5m, SaleQty = 100, SaleDate = DateTime.Parse("2024-07-01") },
+                new ProductSaleModel { SalePrice = 12.75m, SaleQty = 150, SaleDate = DateTime.Parse("2024-07-02") }
+            };
+
+            // Act
+            var result = _productService.CalculateSalesSummary(productSales);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.TotalSalePrice, Is.EqualTo(10.5m * 100 + 12.75m * 150));
+            Assert.That(result.TotalSaleQty, Is.EqualTo(100 + 150));
+            Assert.That(result.DaysToSell, Is.EqualTo(2)); // Assuming sales are within 2 days
+            Assert.That(result.AverageSalePricePerUnit, Is.EqualTo((10.5m * 100 + 12.75m * 150) / (100 + 150)));
+            Assert.That(result.MaxSalePrice, Is.EqualTo(12.75m));
+            Assert.That(result.MinSalePrice, Is.EqualTo(10.5m));
+            Assert.That(result.DateRange, Is.EqualTo("2024/07/01 - 2024/07/02"));
+        }
+
+        [Test]
+        public void CalculateSalesSummary_NullInput_ThrowsArgumentNullException()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => _productService.CalculateSalesSummary(null));
         }
     }
 }

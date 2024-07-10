@@ -12,7 +12,42 @@ namespace SingluarSystems.Services
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<ProductSaleModel>> GetProductSalesSummaryAsync(int productId)
+        public SalesSummaryModel CalculateSalesSummary(IEnumerable<ProductSaleModel> productSales)
+        {
+            if (productSales == null)
+            {
+                throw new ArgumentNullException(nameof(productSales));
+            }
+
+            decimal totalSalePrice = productSales.Sum(s => s.SalePrice * s.SaleQty);
+            int totalSaleQty = productSales.Sum(s => s.SaleQty);
+
+            DateTime earliestSaleDate = productSales.Min(s => s.SaleDate.Value);
+            DateTime latestSaleDate = productSales.Max(s => s.SaleDate.Value);
+            int daysToSell = (int)(latestSaleDate - earliestSaleDate).TotalDays + 1;
+
+            decimal averageSalePricePerUnit = totalSalePrice / totalSaleQty;
+
+            decimal maxSalePrice = productSales.Max(s => s.SalePrice);
+            decimal minSalePrice = productSales.Min(s => s.SalePrice);
+
+            string dateRange = $"{earliestSaleDate.ToShortDateString()} - {latestSaleDate.ToShortDateString()}";
+
+            var summary = new SalesSummaryModel
+            {
+                TotalSalePrice = totalSalePrice,
+                TotalSaleQty = totalSaleQty,
+                DaysToSell = daysToSell,
+                AverageSalePricePerUnit = averageSalePricePerUnit,
+                MaxSalePrice = maxSalePrice,
+                MinSalePrice = minSalePrice,
+                DateRange = dateRange
+            };
+
+            return summary;
+        }
+
+        public async Task<IEnumerable<ProductSaleModel>> GetProductSalesAsync(int productId)
         {
             //We can add extra validation as we wish. e.g how check for user roles and so forth
 

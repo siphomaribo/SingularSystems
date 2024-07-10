@@ -37,7 +37,7 @@ namespace SingularSystems.Core.Controllers
         {
             try
             {
-                var salesSummary = await _productService.GetProductSalesSummaryAsync(productId);
+                var salesSummary = await _productService.GetProductSalesAsync(productId);
                 return Ok(salesSummary);
             }
             catch (ArgumentException ex)
