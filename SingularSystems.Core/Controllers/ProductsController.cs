@@ -32,12 +32,15 @@ namespace SingularSystems.Core.Controllers
         }
 
         [HttpGet]
-        [Route("product-sales")]
-        public async Task<ActionResult<IEnumerable<ProductSaleModel>>> GetProductSalesSummaryAsync([FromQuery] int productId)
+        [Route("product-sales-summary")]
+        public async Task<ActionResult<SalesSummaryModel>> GetProductSalesSummaryAsync([FromQuery] int productId)
         {
             try
             {
-                var salesSummary = await _productService.GetProductSalesAsync(productId);
+                var productSales = await _productService.GetProductSalesAsync(productId);
+
+                var salesSummary = _productService.CalculateSalesSummary(productSales);
+
                 return Ok(salesSummary);
             }
             catch (ArgumentException ex)
