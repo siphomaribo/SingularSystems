@@ -18,4 +18,6 @@ private apiBaseUrl = 'https://localhost:7179/api/Products';
   getProductSummary(productId: any):Observable<any>{
     return this.http.get(this.apiBaseUrl + "/product-sales-summary?productId=" + productId)
   }
+
+  
 }

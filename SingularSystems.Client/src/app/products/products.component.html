@@ -1,28 +1,40 @@
 <div class="container mt-3">
     <h1 class="mb-3">Products</h1>
     
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Product</th>
-                <th scope="col">Category</th>
-                <th scope="col">Price</th>
-                <th scope="col">Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of products; trackBy: trackByProductId">
-                <th scope="row">{{ product.id }}</th>
-                <td>{{ product.description }}</td>
-                <td>{{ product.category }}</td>
-                <td>{{ product.salePrice | currency }}</td>
-                <td>
-                    <img [src]="product.image" [alt]="product.description" class="me-2" style="width: 50px" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">View Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; trackBy: trackByProductId">
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.salePrice | currency:'R ':'symbol':'1.2-2' }}</td>
+                    <td>
+                        <img 
+                            [src]="product.image" 
+                            [alt]="product.description" 
+                            class="me-2 clickable" 
+                            style="width: 50px" 
+                            (click)="openImageModal(product.image, product.description)" 
+                        />
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="openSummaryModal(product.id)">View Summary</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <div class="d-flex justify-content-between p-2">
         <ngb-pagination
@@ -39,4 +51,42 @@
             <option [ngValue]="6">6 items per page</option>
         </select>
     </div>
+
+    <!-- Summary Modal -->
+    <ng-template #summaryModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Product Summary</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Total Sale Price:</strong> {{ summaryData?.totalSalePrice | currency:'R ':'symbol':'1.2-2' }}</p>
+            <p><strong>Total Sale Quantity:</strong> {{ summaryData?.totalSaleQty }}</p>
+            <p><strong>Days to Sell:</strong> {{ summaryData?.daysToSell }}</p>
+            <p><strong>Average Sale Price Per Unit:</strong> {{ summaryData?.averageSalePricePerUnit | currency:'R ':'symbol':'1.2-2' }}</p>
+            <p><strong>Max Sale Price:</strong> {{ summaryData?.maxSalePrice | currency:'R':'symbol':'1.2-2' }}</p>
+            <p><strong>Min Sale Price:</strong> {{ summaryData?.minSalePrice | currency:'R ':'symbol':'1.2-2' }}</p>
+            <p><strong>Date Range:</strong> {{ summaryData?.dateRange }}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
+
+    <!-- Image Modal -->
+    <ng-template #imageModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">{{ selectedImageDescription }}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <img [src]="selectedImageUrl" [alt]="selectedImageDescription" class="img-fluid" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
 </div>
