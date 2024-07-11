@@ -72,7 +72,7 @@ namespace SingluarSystems.Tests.Services
             // Arrange
             var salesSummary = new List<ProductSaleModel>
             {
-                new ProductSaleModel { SaleId = 1, ProductId = 1, SalePrice = 15.33m, SaleQty = 10, SaleDate = DateTime.Parse("2023-01-01") }
+                new ProductSaleModel (  1,1,  15.33m,  10, DateTime.Parse("2023-01-01") )
             };
 
             _productRepositoryMock.Setup(repo => repo.GetProductSalesSummaryAsync(1)).ReturnsAsync(salesSummary);
@@ -122,8 +122,8 @@ namespace SingluarSystems.Tests.Services
             // Arrange
             var productSales = new List<ProductSaleModel>
             {
-                new ProductSaleModel { SalePrice = 10.5m, SaleQty = 100, SaleDate = DateTime.Parse("2024-07-01") },
-                new ProductSaleModel { SalePrice = 12.75m, SaleQty = 150, SaleDate = DateTime.Parse("2024-07-02") }
+                new ProductSaleModel ( 365,1, 10.5m,  100, DateTime.Parse("2024-07-01") ),
+                new ProductSaleModel ( 366,1,  12.75m, 150, DateTime.Parse("2024-07-02") )
             };
 
             // Act

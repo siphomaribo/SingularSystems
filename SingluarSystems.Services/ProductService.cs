@@ -33,16 +33,9 @@ namespace SingluarSystems.Services
 
             string dateRange = $"{earliestSaleDate.ToShortDateString()} - {latestSaleDate.ToShortDateString()}";
 
-            var summary = new SalesSummaryModel
-            {
-                TotalSalePrice = totalSalePrice,
-                TotalSaleQty = totalSaleQty,
-                DaysToSell = daysToSell,
-                AverageSalePricePerUnit = averageSalePricePerUnit,
-                MaxSalePrice = maxSalePrice,
-                MinSalePrice = minSalePrice,
-                DateRange = dateRange
-            };
+            var summary = new SalesSummaryModel();
+
+            summary.SetSummary(totalSalePrice, totalSaleQty, daysToSell, averageSalePricePerUnit, maxSalePrice, minSalePrice, dateRange);
 
             return summary;
         }

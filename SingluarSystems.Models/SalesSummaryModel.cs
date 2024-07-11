@@ -8,12 +8,24 @@ namespace SingluarSystems.Models
 {
     public class SalesSummaryModel
     {
-        public decimal TotalSalePrice { get; set; }
-        public int TotalSaleQty { get; set; }
-        public int DaysToSell { get; set; }
-        public decimal AverageSalePricePerUnit { get; set; }
-        public decimal MaxSalePrice { get; set; }
-        public decimal MinSalePrice { get; set; }
-        public string DateRange { get; set; }
+        public decimal TotalSalePrice { get; private set; }
+        public int TotalSaleQty { get; private set; }
+        public int DaysToSell { get; private set; }
+        public decimal AverageSalePricePerUnit { get; private set; }
+        public decimal MaxSalePrice { get; private set; }
+        public decimal MinSalePrice { get; private set; }
+        public string? DateRange { get; private set; }
+
+        public void SetSummary(decimal totalSalePrice, int totalSaleQty, int daysToSell, decimal averageSalePricePerUnit, decimal maxSalePrice, decimal minSalePrice, string dateRange)
+        {
+            TotalSalePrice = totalSalePrice;
+            TotalSaleQty = totalSaleQty;
+            DaysToSell = daysToSell;
+            AverageSalePricePerUnit = averageSalePricePerUnit;
+            MaxSalePrice = maxSalePrice;
+            MinSalePrice = minSalePrice;
+            DateRange = dateRange;
+        }
     }
+
 }

@@ -8,11 +8,21 @@ namespace SingluarSystems.Models
 {
     public class ProductSaleModel
     {
-        public int SaleId { get; set; }
-        public int ProductId { get; set; }
-        public decimal SalePrice { get; set; }
-        public int SaleQty { get; set; }
-        public DateTime? SaleDate { get; set; }
+        public int SaleId { get; private set; }
+        public int ProductId { get; private set; }
+        public decimal SalePrice { get; private set; }
+        public int SaleQty { get; private set; }
+        public DateTime? SaleDate { get; private set; }
+
+        public ProductSaleModel(int saleId, int productId, decimal salePrice, int saleQty, DateTime? saleDate)
+        {
+            SaleId = saleId;
+            ProductId = productId;
+            SalePrice = salePrice;
+            SaleQty = saleQty;
+            SaleDate = saleDate;
+        }
     }
+
 
 }

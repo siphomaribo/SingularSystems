@@ -5,17 +5,19 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularSystems.Core", "SingularSystems.Core\SingularSystems.Core.csproj", "{F06A1C9C-8A7C-4E58-BE11-DA5AB0266BBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.Models", "SingluarSystems.Models\SingluarSystems.Models.csproj", "{82FE7D0B-D095-478D-9636-A974BE9BCF20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.Models", "SingluarSystems.Models\SingluarSystems.Models.csproj", "{82FE7D0B-D095-478D-9636-A974BE9BCF20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.Abstraction.Interface", "SingluarSystems.Abstraction.Interface\SingluarSystems.Abstraction.Interface.csproj", "{CE4A8B6C-9423-48FA-AE6D-2384C8EB818E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.Abstraction.Interface", "SingluarSystems.Abstraction.Interface\SingluarSystems.Abstraction.Interface.csproj", "{CE4A8B6C-9423-48FA-AE6D-2384C8EB818E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.Services", "SingluarSystems.Services\SingluarSystems.Services.csproj", "{BD4BC921-C8B1-4B1D-A0FF-8A2D8FF12706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.Services", "SingluarSystems.Services\SingluarSystems.Services.csproj", "{BD4BC921-C8B1-4B1D-A0FF-8A2D8FF12706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.ExternalServices.HttpProductAPI", "SingluarSystems.ExternalServices.HttpProductAPI\SingluarSystems.ExternalServices.HttpProductAPI.csproj", "{73C2D357-8387-4C2C-82ED-7C381C4480B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.ExternalServices.HttpProductAPI", "SingluarSystems.ExternalServices.HttpProductAPI\SingluarSystems.ExternalServices.HttpProductAPI.csproj", "{73C2D357-8387-4C2C-82ED-7C381C4480B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.Tests", "SingluarSystems.Tests\SingluarSystems.Tests.csproj", "{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.Tests", "SingluarSystems.Tests\SingluarSystems.Tests.csproj", "{51B5D49A-9B3A-46B9-964B-95FC7D8C76BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingluarSystems.ExternalServices.Interfaces", "SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj", "{25BAE426-4228-442E-82DA-BB5B6713F4F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingluarSystems.ExternalServices.Interfaces", "SingluarSystems.ExternalServices.Interfaces\SingluarSystems.ExternalServices.Interfaces.csproj", "{25BAE426-4228-442E-82DA-BB5B6713F4F8}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SingularSystems.Client", "SingularSystems.Client\SingularSystems.Client.esproj", "{06412942-F584-4F94-9B82-EDE64B46068C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,12 @@ Global
 		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25BAE426-4228-442E-82DA-BB5B6713F4F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06412942-F584-4F94-9B82-EDE64B46068C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
