@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿// ASP.NET Core Controller to manage product-related API endpoints
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SingluarSystems.Abstraction.Interface;
@@ -16,12 +17,14 @@ namespace SingularSystems.Core.Controllers
         private readonly IProductService _productService;
         private readonly ILogger<ProductsController> _logger;
 
+        // Constructor to initialize the product service and logger
         public ProductsController(IProductService productService, ILogger<ProductsController> logger)
         {
             _productService = productService ?? throw new ArgumentNullException(nameof(productService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        // Endpoint to get all products
         [HttpGet]
         [Route("products")]
         public async Task<ActionResult<IEnumerable<ProductModel>>> GetProductsAsync()
@@ -38,6 +41,7 @@ namespace SingularSystems.Core.Controllers
             }
         }
 
+        // Endpoint to get product sales summary by product ID
         [HttpGet]
         [Route("product-sales-summary")]
         public async Task<ActionResult<SalesSummaryModel>> GetProductSalesSummaryAsync([FromQuery] int productId)
