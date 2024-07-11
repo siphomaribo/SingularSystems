@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     NgbAlertModule,
     DecimalPipe,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
