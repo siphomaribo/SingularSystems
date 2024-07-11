@@ -1,38 +1,42 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">Product</th>
-			<th scope="col">Category</th>
-			<th scope="col">Price</th>
-			<th scope="col">Image</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let product of products; trackBy: trackByProductId">
-			<th scope="row">{{ product.id }}</th>
-			<td>{{ product.description }}</td>
-			<td>{{ product.category }}</td>
-			<td>{{ product.salePrice | currency }}</td>
-			<td>
-				<img [src]="product.image" [alt]="product.description" class="me-2" style="width: 50px" />
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<div class="d-flex justify-content-between p-2">
-	<ngb-pagination
-		[collectionSize]="collectionSize"
-		[(page)]="page"
-		[pageSize]="pageSize"
-		(pageChange)="refreshProducts()"
-	>
-	</ngb-pagination>
-
-	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshProducts()">
-		<option [ngValue]="2">2 items per page</option>
-		<option [ngValue]="4">4 items per page</option>
-		<option [ngValue]="6">6 items per page</option>
-	</select>
+<div class="container mt-3">
+    <h1 class="mb-3">Products</h1>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; trackBy: trackByProductId">
+                <th scope="row">{{ product.id }}</th>
+                <td>{{ product.description }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.salePrice | currency }}</td>
+                <td>
+                    <img [src]="product.image" [alt]="product.description" class="me-2" style="width: 50px" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshProducts()"
+        >
+        </ngb-pagination>
+    
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshProducts()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
 </div>
